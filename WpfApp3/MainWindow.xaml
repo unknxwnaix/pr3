@@ -1,0 +1,97 @@
+﻿<Window x:Class="WpfApp3.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3"
+        mc:Ignorable="d"
+        Closed="Window_Closed"
+        Title="MainWindow"  MinHeight="600" MinWidth="850">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="109*"/>
+            <RowDefinition Height="145*"/>
+            <RowDefinition Height="72*"/>
+
+            <RowDefinition Height="109*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+
+        </Grid.ColumnDefinitions>
+        <Button x:Name="PauseButton"
+  Style="{StaticResource MaterialDesignIconButton}"
+  ToolTip="Pause / Play"
+   Background="WhiteSmoke"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Grid.Column="3" Margin="33,31,33,30" Grid.Row="3" Click="PauseButton_Click">
+            <materialDesign:PackIcon
+                 Background="WhiteSmoke"
+    Kind="Play" />
+        </Button>
+        <Button x:Name="PreviousTButton"
+  Style="{StaticResource MaterialDesignIconButton}"
+  ToolTip="Play previous"
+   Background="WhiteSmoke"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Grid.Column="2" Margin="33,31,33,30" Grid.Row="3" Click="PreviousTButton_Click">
+            <materialDesign:PackIcon
+                 Background="WhiteSmoke"
+    Kind="PreviousTitle" />
+        </Button>
+        <Button x:Name="NextTButton"
+  Style="{StaticResource MaterialDesignIconButton}"
+  ToolTip="Play next"
+   Background="WhiteSmoke"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Grid.Column="4" Margin="33,31,33,30" Grid.Row="3" Click="NextTButton_Click">
+            <materialDesign:PackIcon
+                 Background="WhiteSmoke"
+    Kind="NextTitle" />
+        </Button>
+        <Button x:Name="RestartButton"
+  Style="{StaticResource MaterialDesignIconButton}"
+  ToolTip="Replay"
+   Background="WhiteSmoke"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Grid.Column="1" Margin="33,31,34,30" Grid.Row="3" Click="RestartButton_Click">
+            <materialDesign:PackIcon
+                 Background="WhiteSmoke"
+    Kind="Restart" />
+        </Button>
+        <Button x:Name="ShuffleButton"
+  Style="{StaticResource MaterialDesignIconButton}"
+  ToolTip="Shuffle"
+  Background="WhiteSmoke"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="33,31,33,30" Grid.Row="3" Click="ShuffleButton_Click">
+            <materialDesign:PackIcon
+    Kind="Shuffle" />
+        </Button>
+        <Button x:Name="OpenFileButton"
+  Style="{StaticResource MaterialDesignRaisedLightButton}"
+  ToolTip="Resource name: MaterialDesignRaisedLightButton"
+  Content="Выбрать папку"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Grid.Column="3" Margin="0,38,0,39" Click="OpenFileButton_Click" FontSize="11" />
+        <Slider x:Name="VolumeSlider"
+  Value="0"
+  Minimum="0"
+  Maximum="{Binding DiscreteHorizontal.Maximum}"
+  Style="{StaticResource MaterialDesignDiscreteSlider}"
+  TickFrequency="{Binding DiscreteHorizontal.TickFrequency}"
+  TickPlacement="BottomRight" Grid.Column="5" Margin="60,37,57,37" Grid.Row="3" ValueChanged="VolumeSlider_ValueChanged" />
+
+        <ListBox x:Name="LBox" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1" Grid.ColumnSpan="6" Margin="0,0,0,1" SelectionChanged="LBox_SelectionChanged"/>
+        <TextBlock x:Name="FBox" TextWrapping="Wrap" Text="0:00" Margin="0,1,57,8" Grid.Row="2" RenderTransformOrigin="0.533,-0.705"/>
+        <TextBlock x:Name="SBox" TextWrapping="Wrap" Text="-0:00" Margin="57,1,0,8" Grid.Row="2" Grid.Column="5" TextAlignment="Right"/>
+        <MediaElement x:Name="track" Grid.Column="4" Margin="114,1,0,6" MediaEnded="track_MediaEnded" MediaOpened="track_MediaOpened" Grid.ColumnSpan="2"/>
+        <Slider x:Name="TimeSlider"
+            Minimum="0"
+            Maximum="50"
+            Value="0" Height="36" VerticalAlignment="Top" Grid.Row="2" Grid.ColumnSpan="6" Margin="15,36,15
+                ,0" ValueChanged="TimeSlider_ValueChanged" />
+    </Grid>
+
+</Window>
